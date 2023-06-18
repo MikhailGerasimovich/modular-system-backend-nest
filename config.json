@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "957483",
+    "database": "modular_system_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "957483",
+    "database": "modular_system_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "957483",
+    "database": "modular_system_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
