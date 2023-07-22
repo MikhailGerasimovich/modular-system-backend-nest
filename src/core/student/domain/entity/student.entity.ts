@@ -1,7 +1,8 @@
-import { BelongsToMany, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Grade } from 'src/core/grade/domain/entity/grade.entity';
 import { StudentSubgroup } from 'src/core/subgroup/domain/entity/student-subgroup.entity';
 import { Subgroup } from 'src/core/subgroup/domain/entity/subgroup.entity';
+import { User } from 'src/core/user/domain/entity/user.entity';
 
 interface IStudentCreationAttrs {
   id: number;
@@ -33,4 +34,11 @@ export class Student extends Model<Student, IStudentCreationAttrs> {
 
   @HasMany(() => Grade, 'student_id')
   grades: Grade[];
+
+  @BelongsTo(() => User, 'user_id')
+  user: User;
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  userId: number;
 }

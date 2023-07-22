@@ -1,6 +1,7 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Department } from 'src/core/department/domain/entity/department.entity';
 import { TeacherDiscipline } from 'src/core/teacher-discipline/domain/entity/teacher-discipline.entity';
+import { User } from 'src/core/user/domain/entity/user.entity';
 
 interface ITeacherCreationAttrs {
   id: number;
@@ -33,4 +34,11 @@ export class Teacher extends Model<Teacher, ITeacherCreationAttrs> {
 
   @HasMany(() => TeacherDiscipline, 'teacher_id')
   teacherDisciplines: TeacherDiscipline[];
+
+  @BelongsTo(() => User, 'user_id')
+  user: User;
+
+  @ForeignKey(() => User)
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  userId: number;
 }

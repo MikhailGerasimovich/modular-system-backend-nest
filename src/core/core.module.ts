@@ -21,6 +21,7 @@ import { UserModule } from './user/user.module';
     AcademicPlanModule,
     GroupModule,
     DisciplineModule,
+    UserModule,
     StudentModule,
     SubgroupModule,
     DepartmentModule,
@@ -31,7 +32,6 @@ import { UserModule } from './user/user.module';
     GradeModule,
     RoleModule,
     TeacherDisciplineModule,
-    UserModule,
   ],
 })
 export class CoreModule {}

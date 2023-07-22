@@ -10,6 +10,7 @@ module.exports = {
         surname: 'Герасимович',
         patronymic: 'Андреевич',
         code: '2001290266',
+        user_id: 1,
       },
       {
         id: 2,
@@ -17,6 +18,7 @@ module.exports = {
         surname: 'Щемелева',
         patronymic: 'Дмитриевна',
         code: '2001290265',
+        user_id: 2,
       },
       {
         id: 3,
@@ -24,6 +26,7 @@ module.exports = {
         surname: 'Лабузов',
         patronymic: 'Андреевич',
         code: '2001290261',
+        user_id: 3,
       },
       {
         id: 4,
@@ -31,6 +34,7 @@ module.exports = {
         surname: 'Стасюк',
         patronymic: 'Евгеньевич',
         code: '2001290260',
+        user_id: 4,
       },
       {
         id: 5,
@@ -38,6 +42,7 @@ module.exports = {
         surname: 'Цитович',
         patronymic: 'Викторович',
         code: '2001290259',
+        user_id: 5,
       },
       {
         id: 6,
@@ -45,6 +50,7 @@ module.exports = {
         surname: 'Янчилин',
         patronymic: 'Дмитриевич',
         code: '2001290263',
+        user_id: 6,
       },
       {
         id: 7,
@@ -52,6 +58,7 @@ module.exports = {
         surname: 'Царенко',
         patronymic: 'Сергеевич',
         code: '2001290256',
+        user_id: 7,
       },
       {
         id: 8,
@@ -59,6 +66,7 @@ module.exports = {
         surname: 'Гладков',
         patronymic: 'Андреевич',
         code: '2001290253',
+        user_id: 8,
       },
       {
         id: 9,
@@ -66,6 +74,7 @@ module.exports = {
         surname: 'Скрага',
         patronymic: 'Иванович',
         code: '2001290248',
+        user_id: 9,
       },
       {
         id: 10,
@@ -73,6 +82,7 @@ module.exports = {
         surname: 'Изобова',
         patronymic: 'Владимировна',
         code: '2001290251',
+        user_id: 10,
       },
       {
         id: 11,
@@ -80,6 +90,7 @@ module.exports = {
         surname: 'Папко',
         patronymic: 'Сергеевич',
         code: '2001290257',
+        user_id: 11,
       },
       {
         id: 12,
@@ -87,6 +98,7 @@ module.exports = {
         surname: 'Пастухов',
         patronymic: 'Юрьевич',
         code: '2001290247',
+        user_id: 12,
       },
       {
         id: 13,
@@ -94,6 +106,7 @@ module.exports = {
         surname: 'Костромитин',
         patronymic: 'Евгеньевич',
         code: '2001290264',
+        user_id: 13,
       },
       {
         id: 14,
@@ -101,6 +114,7 @@ module.exports = {
         surname: 'Шарко',
         patronymic: 'Сергеевич',
         code: '2001290262',
+        user_id: 14,
       },
       {
         id: 15,
@@ -108,6 +122,7 @@ module.exports = {
         surname: 'Доморад',
         patronymic: 'Андреевич',
         code: '2001290258',
+        user_id: 15,
       },
       {
         id: 16,
@@ -115,6 +130,7 @@ module.exports = {
         surname: 'Бобрик',
         patronymic: 'Викторович',
         code: '2001290255',
+        user_id: 16,
       },
       {
         id: 17,
@@ -122,6 +138,7 @@ module.exports = {
         surname: 'Васильев',
         patronymic: 'Сергеевич',
         code: '2001290254',
+        user_id: 17,
       },
       {
         id: 18,
@@ -129,6 +146,7 @@ module.exports = {
         surname: 'Дубовец',
         patronymic: 'Владимирович',
         code: '2001290252',
+        user_id: 18,
       },
       {
         id: 19,
@@ -136,6 +154,7 @@ module.exports = {
         surname: 'Колесникович',
         patronymic: 'Викторович',
         code: '2001290250',
+        user_id: 19,
       },
       {
         id: 20,
@@ -143,6 +162,7 @@ module.exports = {
         surname: 'Куновский',
         patronymic: 'Валерьевич',
         code: '2001290249',
+        user_id: 20,
       },
       {
         id: 21,
@@ -150,6 +170,7 @@ module.exports = {
         surname: 'Москалев',
         patronymic: 'Александрович',
         code: '2001290248',
+        user_id: 21,
       },
       {
         id: 22,
@@ -157,6 +178,7 @@ module.exports = {
         surname: 'Пшонко',
         patronymic: 'Валерьевич',
         code: '2001290246',
+        user_id: 22,
       },
       {
         id: 23,
@@ -164,6 +186,7 @@ module.exports = {
         surname: 'Ремизова',
         patronymic: 'Алексеевна',
         code: '2001290245',
+        user_id: 23,
       },
       {
         id: 24,
@@ -171,6 +194,7 @@ module.exports = {
         surname: 'Сиренко',
         patronymic: 'Ивановна',
         code: '2001290248',
+        user_id: 24,
       },
     ]);
 

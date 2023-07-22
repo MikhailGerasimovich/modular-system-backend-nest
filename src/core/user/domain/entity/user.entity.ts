@@ -1,6 +1,8 @@
-import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript';
+import { BelongsToMany, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { UserRole } from './user-role.entity';
 import { Role } from 'src/core/role/domain/entity/role.entity';
+import { Student } from 'src/core/student/domain/entity/student.entity';
+import { Teacher } from 'src/core/teacher/domain/entity/teacher.entity';
 
 interface IUserCreationAttrs {
   id: number;
@@ -21,4 +23,10 @@ export class User extends Model<User, IUserCreationAttrs> {
 
   @BelongsToMany(() => Role, () => UserRole, 'user_id', 'role_id')
   roles: Role[];
+
+  @HasMany(() => Student, 'user_id')
+  students: Student[];
+
+  @HasMany(() => Teacher, 'user_id')
+  teachers: Teacher[];
 }

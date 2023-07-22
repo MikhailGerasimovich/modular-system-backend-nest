@@ -7,14 +7,14 @@ const Sequelize = require('sequelize');
  *
  * createTable "specialties", deps: []
  * createTable "disciplines", deps: []
- * createTable "students", deps: []
+ * createTable "users", deps: []
  * createTable "departments", deps: []
  * createTable "roles", deps: []
- * createTable "users", deps: []
  * createTable "academic_plans", deps: [specialties]
  * createTable "groups", deps: [academic_plans]
+ * createTable "students", deps: [users]
  * createTable "subgroups", deps: [groups]
- * createTable "teachers", deps: [departments]
+ * createTable "teachers", deps: [departments, users]
  * createTable "discipline_academic_plans", deps: [disciplines, departments, academic_plans]
  * createTable "academic_modules", deps: [discipline_academic_plans]
  * createTable "tasks", deps: [academic_modules]
@@ -28,7 +28,7 @@ const Sequelize = require('sequelize');
 const info = {
     "revision": 1,
     "name": "init",
-    "created": "2023-06-18T12:16:46.320Z",
+    "created": "2023-07-22T14:05:02.604Z",
     "comment": ""
 };
 
@@ -72,7 +72,7 @@ const migrationCommands = [
             [{
                 revision: info.revision,
                 name: info.name,
-                state: '{"revision":1,"tables":{"specialties":{"tableName":"specialties","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"short_title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"academic_plans":{"tableName":"academic_plans","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"recruitment_year":{"seqType":"Sequelize.STRING","allowNull":false},"speciality_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"specialties","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"groups":{"tableName":"groups","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"disciplines":{"tableName":"disciplines","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"short_title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"students":{"tableName":"students","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"name":{"seqType":"Sequelize.STRING","allowNull":false},"surname":{"seqType":"Sequelize.STRING","allowNull":false},"patronymic":{"seqType":"Sequelize.STRING","allowNull":false},"code":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"subgroups":{"tableName":"subgroups","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"group_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"groups","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"departments":{"tableName":"departments","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"short_title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"teachers":{"tableName":"teachers","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"name":{"seqType":"Sequelize.STRING","allowNull":false},"surname":{"seqType":"Sequelize.STRING","allowNull":false},"patronymic":{"seqType":"Sequelize.STRING","allowNull":false},"department_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"departments","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"discipline_academic_plans":{"tableName":"discipline_academic_plans","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"semester":{"seqType":"Sequelize.INTEGER","allowNull":false},"lectures_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"practical_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"laboratory_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"control_form":{"seqType":"Sequelize.STRING","allowNull":false},"discipline_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"disciplines","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"department_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"departments","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"academic_modules":{"tableName":"academic_modules","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"lectures_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"practical_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"laboratory_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"discipline_academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"discipline_academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"tasks":{"tableName":"tasks","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"topic":{"seqType":"Sequelize.STRING","allowNull":false},"description":{"seqType":"Sequelize.STRING","allowNull":false},"is_obligatory":{"seqType":"Sequelize.BOOLEAN","allowNull":false},"lectures_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"practical_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"laboratory_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"academic_module_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"academic_modules","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"grades":{"tableName":"grades","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"value":{"seqType":"Sequelize.DOUBLE","allowNull":false},"student_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"students","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"task_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"tasks","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"roles":{"tableName":"roles","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"teacher_disciplines":{"tableName":"teacher_disciplines","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"class_type":{"seqType":"Sequelize.STRING","allowNull":false},"teacher_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"teachers","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"discipline_academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"discipline_academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"users":{"tableName":"users","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"login":{"seqType":"Sequelize.STRING","allowNull":false},"password":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"student_subgroups":{"tableName":"student_subgroups","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"student_id":{"seqType":"Sequelize.INTEGER","unique":"student_subgroups_subgroup_id_student_id_unique","references":{"model":"students","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"},"subgroup_id":{"seqType":"Sequelize.INTEGER","unique":"student_subgroups_subgroup_id_student_id_unique","references":{"model":"subgroups","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"}},"indexes":{}},"user_roles":{"tableName":"user_roles","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"user_id":{"seqType":"Sequelize.INTEGER","unique":"user_roles_user_id_role_id_unique","references":{"model":"users","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"},"role_id":{"seqType":"Sequelize.INTEGER","unique":"user_roles_user_id_role_id_unique","references":{"model":"roles","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"}},"indexes":{}}}}'
+                state: '{"revision":1,"tables":{"specialties":{"tableName":"specialties","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"short_title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"academic_plans":{"tableName":"academic_plans","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"recruitment_year":{"seqType":"Sequelize.STRING","allowNull":false},"speciality_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"specialties","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"groups":{"tableName":"groups","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"disciplines":{"tableName":"disciplines","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"short_title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"users":{"tableName":"users","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"login":{"seqType":"Sequelize.STRING","allowNull":false},"password":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"students":{"tableName":"students","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"name":{"seqType":"Sequelize.STRING","allowNull":false},"surname":{"seqType":"Sequelize.STRING","allowNull":false},"patronymic":{"seqType":"Sequelize.STRING","allowNull":false},"code":{"seqType":"Sequelize.STRING","allowNull":false},"user_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"users","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"subgroups":{"tableName":"subgroups","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"group_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"groups","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"departments":{"tableName":"departments","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"short_title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"teachers":{"tableName":"teachers","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"name":{"seqType":"Sequelize.STRING","allowNull":false},"surname":{"seqType":"Sequelize.STRING","allowNull":false},"patronymic":{"seqType":"Sequelize.STRING","allowNull":false},"department_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"departments","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"user_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"users","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"discipline_academic_plans":{"tableName":"discipline_academic_plans","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"semester":{"seqType":"Sequelize.INTEGER","allowNull":false},"lectures_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"practical_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"laboratory_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"control_form":{"seqType":"Sequelize.STRING","allowNull":false},"discipline_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"disciplines","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"department_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"departments","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"academic_modules":{"tableName":"academic_modules","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false},"lectures_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"practical_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"laboratory_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"discipline_academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"discipline_academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"tasks":{"tableName":"tasks","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"topic":{"seqType":"Sequelize.STRING","allowNull":false},"description":{"seqType":"Sequelize.STRING","allowNull":false},"is_obligatory":{"seqType":"Sequelize.BOOLEAN","allowNull":false},"lectures_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"practical_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"laboratory_number":{"seqType":"Sequelize.INTEGER","allowNull":false},"academic_module_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"academic_modules","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"grades":{"tableName":"grades","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"value":{"seqType":"Sequelize.DOUBLE","allowNull":false},"student_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"students","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"task_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"tasks","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"roles":{"tableName":"roles","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"title":{"seqType":"Sequelize.STRING","allowNull":false}},"indexes":{}},"teacher_disciplines":{"tableName":"teacher_disciplines","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"class_type":{"seqType":"Sequelize.STRING","allowNull":false},"teacher_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"teachers","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"},"discipline_academic_plan_id":{"seqType":"Sequelize.INTEGER","allowNull":true,"references":{"model":"discipline_academic_plans","key":"id"},"onUpdate":"CASCADE","onDelete":"SET NULL"}},"indexes":{}},"student_subgroups":{"tableName":"student_subgroups","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"student_id":{"seqType":"Sequelize.INTEGER","unique":"student_subgroups_subgroup_id_student_id_unique","references":{"model":"students","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"},"subgroup_id":{"seqType":"Sequelize.INTEGER","unique":"student_subgroups_subgroup_id_student_id_unique","references":{"model":"subgroups","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"}},"indexes":{}},"user_roles":{"tableName":"user_roles","schema":{"id":{"seqType":"Sequelize.INTEGER","unique":true,"primaryKey":true,"autoIncrement":true},"user_id":{"seqType":"Sequelize.INTEGER","unique":"user_roles_role_id_user_id_unique","references":{"model":"users","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"},"role_id":{"seqType":"Sequelize.INTEGER","unique":"user_roles_role_id_user_id_unique","references":{"model":"roles","key":"id"},"onUpdate":"CASCADE","onDelete":"CASCADE"}},"indexes":{}}}}'
             }],
             {}
         ]
@@ -132,7 +132,7 @@ const migrationCommands = [
     {
         fn: "createTable",
         params: [
-            "students",
+            "users",
             {
                 "id": {
                     "autoIncrement": true,
@@ -140,19 +140,11 @@ const migrationCommands = [
                     "unique": true,
                     "type": Sequelize.INTEGER
                 },
-                "name": {
+                "login": {
                     "allowNull": false,
                     "type": Sequelize.STRING
                 },
-                "surname": {
-                    "allowNull": false,
-                    "type": Sequelize.STRING
-                },
-                "patronymic": {
-                    "allowNull": false,
-                    "type": Sequelize.STRING
-                },
-                "code": {
+                "password": {
                     "allowNull": false,
                     "type": Sequelize.STRING
                 }
@@ -197,30 +189,6 @@ const migrationCommands = [
                     "type": Sequelize.INTEGER
                 },
                 "title": {
-                    "allowNull": false,
-                    "type": Sequelize.STRING
-                }
-            },
-            {}
-        ]
-    },
-
-    {
-        fn: "createTable",
-        params: [
-            "users",
-            {
-                "id": {
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "unique": true,
-                    "type": Sequelize.INTEGER
-                },
-                "login": {
-                    "allowNull": false,
-                    "type": Sequelize.STRING
-                },
-                "password": {
                     "allowNull": false,
                     "type": Sequelize.STRING
                 }
@@ -292,6 +260,48 @@ const migrationCommands = [
     {
         fn: "createTable",
         params: [
+            "students",
+            {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "unique": true,
+                    "type": Sequelize.INTEGER
+                },
+                "name": {
+                    "allowNull": false,
+                    "type": Sequelize.STRING
+                },
+                "surname": {
+                    "allowNull": false,
+                    "type": Sequelize.STRING
+                },
+                "patronymic": {
+                    "allowNull": false,
+                    "type": Sequelize.STRING
+                },
+                "code": {
+                    "allowNull": false,
+                    "type": Sequelize.STRING
+                },
+                "user_id": {
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "references": {
+                        "model": "users",
+                        "key": "id"
+                    },
+                    "allowNull": true,
+                    "type": Sequelize.INTEGER
+                }
+            },
+            {}
+        ]
+    },
+
+    {
+        fn: "createTable",
+        params: [
             "subgroups",
             {
                 "id": {
@@ -347,6 +357,16 @@ const migrationCommands = [
                     "onUpdate": "CASCADE",
                     "references": {
                         "model": "departments",
+                        "key": "id"
+                    },
+                    "allowNull": true,
+                    "type": Sequelize.INTEGER
+                },
+                "user_id": {
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "references": {
+                        "model": "users",
                         "key": "id"
                     },
                     "allowNull": true,
@@ -649,7 +669,7 @@ const migrationCommands = [
                         "model": "users",
                         "key": "id"
                     },
-                    "unique": "user_roles_user_id_role_id_unique",
+                    "unique": "user_roles_role_id_user_id_unique",
                     "type": Sequelize.INTEGER
                 },
                 "role_id": {
@@ -659,7 +679,7 @@ const migrationCommands = [
                         "model": "roles",
                         "key": "id"
                     },
-                    "unique": "user_roles_user_id_role_id_unique",
+                    "unique": "user_roles_role_id_user_id_unique",
                     "type": Sequelize.INTEGER
                 }
             },
@@ -690,6 +710,10 @@ const rollbackCommands = [
     {
         fn: "dropTable",
         params: ["groups"]
+    },
+    {
+        fn: "dropTable",
+        params: ["students"]
     },
     {
         fn: "dropTable",
@@ -737,7 +761,7 @@ const rollbackCommands = [
     },
     {
         fn: "dropTable",
-        params: ["students"]
+        params: ["users"]
     },
     {
         fn: "dropTable",
@@ -746,10 +770,6 @@ const rollbackCommands = [
     {
         fn: "dropTable",
         params: ["roles"]
-    },
-    {
-        fn: "dropTable",
-        params: ["users"]
     }
 ];
 

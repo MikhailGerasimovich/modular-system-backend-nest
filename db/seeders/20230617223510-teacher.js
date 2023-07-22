@@ -10,6 +10,7 @@ module.exports = {
         surname: 'Ермоченко',
         patronymic: 'Александрович',
         department_id: 1,
+        user_id: 25,
       },
       {
         id: 2,
@@ -17,6 +18,7 @@ module.exports = {
         surname: 'Новый',
         patronymic: 'Владимирович',
         department_id: 1,
+        user_id: 26,
       },
       {
         id: 3,
@@ -24,6 +26,7 @@ module.exports = {
         surname: 'Сергеенко',
         patronymic: 'Владимирович',
         department_id: 1,
+        user_id: 27,
       },
       {
         id: 4,
@@ -31,6 +34,7 @@ module.exports = {
         surname: 'Никитин',
         patronymic: 'Игоревич',
         department_id: 1,
+        user_id: 28,
       },
     ]);
 
